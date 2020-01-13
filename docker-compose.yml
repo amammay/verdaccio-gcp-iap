@@ -1,9 +1,0 @@
-version: '2.1'
-services:
-  verdaccio:
-    image: verda:latest
-    container_name: verdaccio-local
-    ports:
-      - 4873:4873
-    volumes:
-        - "./conf:/verdaccio/conf"
