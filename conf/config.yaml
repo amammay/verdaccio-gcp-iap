@@ -1,24 +1,22 @@
-# storage: /verdaccio/storage
-
-auth:
-  htpasswd:
-    file: /verdaccio/conf/htpasswd
-    # Maximum amount of users allowed to register, defaults to "+inf".
-    # You can set this to -1 to disable registration.
-    #max_users: 1000
-security:
-  api:
-    jwt:
-      sign:
-        expiresIn: 60d
-        notBefore: 1
-  web:
-    sign:
-      expiresIn: 7d
+listen: 0.0.0.0:8080
 
 store:
-  memory:
-    limit: 1000
+    google-cloud:
+     # google project id
+     projectId: blabla
+
+     # namespace for metadata database
+     kind: someRandonMetadataDatabaseKey
+
+     # this pluging do not create the bucket, it has to exist
+     bucket: blabla
+
+     # Enable/disable resumable uploads to GC Storage
+     # By default it's enabled in `@google-cloud/storage`
+     # May cause failures for small package uploads so it is recommended to set it to `false`
+     # @see https://stackoverflow.com/questions/53172050/google-cloud-storage-invalid-upload-request-error-bad-request
+     resumable: false
+
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
@@ -27,8 +25,8 @@ uplinks:
 packages:
   '@*/*':
     # scoped packages
-    access: $authenticated
-    publish: $authenticated
+    access: $all
+    publish: $all
     proxy: npmjs
 
   '**':
@@ -37,11 +35,11 @@ packages:
     #
     # you can specify usernames/groupnames (depending on your auth plugin)
     # and three keywords: "$all", "$anonymous", "$authenticated"
-    access: $authenticated
+    access: $all
 
     # allow all known users to publish packages
     # (anyone can register by default, remember?)
-    publish: $authenticated
+    publish: $all
 
     # if package is not available locally, proxy requests to 'npmjs' registry
     proxy: npmjs

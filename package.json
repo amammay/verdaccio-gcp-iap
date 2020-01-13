@@ -1,0 +1,24 @@
+{
+  "name": "verdaccio-hosted",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "verdaccio --config ./conf/config.yaml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amammay/verdaccio-gcp-iap.git"
+  },
+  "keywords": [],
+  "author": "alexmammay@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amammay/verdaccio-gcp-iap/issues"
+  },
+  "homepage": "https://github.com/amammay/verdaccio-gcp-iap#readme",
+  "dependencies": {
+    "verdaccio": "^4.4.2",
+    "verdaccio-google-cloud": "^9.0.0"
+  }
+}
